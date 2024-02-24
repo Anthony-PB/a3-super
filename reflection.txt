@@ -1,0 +1,31 @@
+# Assignment 3 reflection
+
+## Submitter metadata
+
+Partner 1: Firstname Lastname (NetID)  - TODO
+Partner 2: Firstname Lastname (NetID)  - delete if working solo
+
+Hours spent working on this assignment: 0.0  - TODO
+
+## Verification questions
+
+1. Run your `CsvJoin` application with program arguments so that it attempts to join
+   `tests/testCsvToList/non-rectangular.csv` (on the left) with `tests/testCsvToList/empty-col.csv`
+   (on the right).  What **red text** does your program print to IntelliJ's console?
+   (as a reminder, it had better not include a stack trace)
+
+   Answer: TODO
+
+## Reflection questions
+
+1. Which `LinkedSeq` operation did you think was the most difficult to implement and debug?  What
+   corner case caught you by surprise or was particularly awkward to handle?  Finally, describe a
+   testing scenario that you added which covers this corner case.
+
+   Answer: TODO
+
+2. How did you plan and budget your time so that you could complete and debug your application by
+   the deadline?  If you worked as partners, how did you coordinate to ensure in advance that you
+   would have sufficient time to work on the project together?
+
+   Answer: TODO
