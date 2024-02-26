@@ -36,9 +36,14 @@ public class LinkedSeq<T> implements Seq<T> {
         } else {
             assert head != null;
             assert tail != null;
-
-            // TODO 0: check that the number of linked nodes is equal to this list's size and that
-            // the last linked node is the same object as `tail`.
+            Node<T> node = head;
+            int count = 0;
+            while (node != null){
+                count++;
+                assert node.next() != null || (node == tail);
+                node = node.next();
+            }
+            assert(count == size);
         }
     }
 
