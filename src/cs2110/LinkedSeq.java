@@ -94,8 +94,6 @@ public class LinkedSeq<T> implements Seq<T> {
     public String toString() {
         assertInv();
         String str = "[";
-        // TODO 1: Complete the implementation of this method according to its specification.
-        // Unit tests have already been provided (you do not need to add additional cases).
         Node<T> node = head;
         while (node != null){
             str += node.data();
@@ -110,10 +108,14 @@ public class LinkedSeq<T> implements Seq<T> {
 
     @Override
     public boolean contains(T elem) {
-        // TODO 2: Write unit tests for this method, then implement it according to its
-        // specification.  Tests must check for `elem` in a list that does not contain `elem`, in a
-        // list that contains it once, and in a list that contains it more than once.
-        throw new UnsupportedOperationException();
+        Node<T> node = head;
+        while (node != null){
+            if(node.data().equals(elem)){
+                return true;
+            }
+            node = node.next();
+        }
+        return false;
 
     }
 
