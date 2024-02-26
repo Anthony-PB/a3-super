@@ -123,7 +123,29 @@ class LinkedSeqTest {
     // You are welcome to compare against an expected `toString()` output in order to check multiple
     // aspects of the state at once (in general, later tests may make use of methods that have
     // previously been tested).  Each test procedure must describe its scenario using @DisplayName.
+    @DisplayName("Given a linked list check for `elem` in the list that does not contain "
+            + "`elem`, in a list that contains it once, and in a list that contains it more than "
+            + "once.")
+    @Test
+    void testContains() {
+        Seq<String> list;
+        // WHEN empty and does not contain
+        list = makeList0();
+        assertFalse(list.contains("B"));
 
+        // WHEN nonempty and does not contain
+        list = makeList1();
+        assertFalse(list.contains("B"));
+
+        // WHEN nonempty and does contain
+        list = makeList1();
+        assertTrue(list.contains("A"));
+
+        // WHEN nonempty and contains element twice or more
+        String[] stringArray = {"Apple", "Banana", "Cherry", "Apple"};
+        list = makeList(stringArray);
+        assertTrue(list.contains("Apple"));
+    }
 
 
     /*

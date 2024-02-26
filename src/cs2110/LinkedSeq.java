@@ -114,6 +114,7 @@ public class LinkedSeq<T> implements Seq<T> {
         // specification.  Tests must check for `elem` in a list that does not contain `elem`, in a
         // list that contains it once, and in a list that contains it more than once.
         throw new UnsupportedOperationException();
+
     }
 
     @Override
