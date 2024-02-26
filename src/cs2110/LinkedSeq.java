@@ -92,9 +92,18 @@ public class LinkedSeq<T> implements Seq<T> {
      */
     @Override
     public String toString() {
+        assertInv();
         String str = "[";
         // TODO 1: Complete the implementation of this method according to its specification.
         // Unit tests have already been provided (you do not need to add additional cases).
+        Node<T> node = head;
+        while (node != null){
+            str += node.data();
+            if(node.next() != null){
+                str += ", ";
+            }
+            node = node.next();
+        }
         str += "]";
         return str;
     }
