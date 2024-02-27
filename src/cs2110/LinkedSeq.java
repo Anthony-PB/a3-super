@@ -230,11 +230,11 @@ public class LinkedSeq<T> implements Seq<T> {
             return false;
         }
         LinkedSeq otherSeq = (LinkedSeq) other;
-        
+
         Node<T> currNodeThis = head;
         Node currNodeOther = otherSeq.head;
 
-        while(currNodeThis != null && currNodeThis.equals(currNodeOther)){
+        while(currNodeThis != null && currNodeThis.data().equals(currNodeOther.data())){
             currNodeOther = currNodeOther.next();
             currNodeThis = currNodeThis.next();
         }
