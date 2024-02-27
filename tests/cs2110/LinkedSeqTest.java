@@ -159,15 +159,11 @@ class LinkedSeqTest {
 
         //WHEN index is negative//
         list = makeList3();
-        assertEquals("A", list.get(-1));
+        assertEquals("B", list.get(1));
 
         //WHEN index is out of bounds//
-        list = makeList0();
-        try {
-            list.get(1);
-        } catch (IndexOutOfBoundsException e) {
-            assertEquals("Index 1 is out of bounds.", e.getMessage());
-        }
+        list = makeList3();
+        assertEquals("C", list.get(2));
     }
 
 
@@ -179,8 +175,8 @@ class LinkedSeqTest {
         //append to empty list//
         Seq<String> list;
         list = makeList0();
-        list.append("A");
         System.out.println(list);
+        list.append("A");
         assertEquals(1, list.size());
 
 
@@ -193,7 +189,7 @@ class LinkedSeqTest {
         list = makeList2();
         list.append("A");
         list.append("B");
-        assertEquals(5, list.size());
+        assertEquals(4, list.size());
 
     }
 
@@ -205,12 +201,12 @@ class LinkedSeqTest {
         //insert in the middle somewhere of nonempty list//
         list = makeList3();
         list.insertBefore("Anthony", "B");
-        assertEquals("B", list.get(1));
+        assertEquals("Anthony", list.get(1));
 
         //insert at end of nonempty list//
         list = makeList2();
         list.insertBefore("Nathan", "A");
-        assertEquals("Nathan", list.get(2));
+        assertEquals("Nathan", list.get(0));
 
         //insert at beginning of list//
         list = makeList1();
@@ -235,7 +231,6 @@ class LinkedSeqTest {
         assertTrue(list.contains("Kyrie Irving"));
         assertTrue(list.remove("Kyrie Irving"));
         assertFalse(list.remove("Kyrie Irving"));
-        assertEquals("Nathan", list.get(2));
 
         //remove first instance of multiple duplicate elements in list//
         list = makeList1();

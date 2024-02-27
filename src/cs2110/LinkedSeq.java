@@ -153,6 +153,7 @@ public class LinkedSeq<T> implements Seq<T> {
             tail.setNext(newNode);
             tail = newNode;
         }
+        size++;
     }
 
     @Override
@@ -165,9 +166,15 @@ public class LinkedSeq<T> implements Seq<T> {
         assertInv();
         Node<T> node = head;
         while (node != null){
+            if (node.data().equals(successor)){
+                prepend(elem);
+                break;
+            }
             if(node.next().data().equals(successor)){
                 Node<T> newNode = new Node<>(elem, node.next());
                 node.setNext(newNode);
+                size++;
+                break;
             }
             node = node.next();
         }
@@ -185,6 +192,7 @@ public class LinkedSeq<T> implements Seq<T> {
                 Node<T> removedNode = node.next();
                 node.setNext(removedNode.next()); //It can also be node.next().next()
                 removedNode.setNext(null);        //Added var for clarity
+                size--;
                 return true;
             }
             node = node.next();
