@@ -186,12 +186,25 @@ public class LinkedSeq<T> implements Seq<T> {
         // specification.  Tests must remove `elem` from a list that does not contain `elem`, from a
         // list that contains it once, and from a list that contains it more than once.
         assertInv();
+        if(head.data().equals(elem)){
+            Node<T> removedNode = head;
+            head = head.next();
+            if(head == null){
+                tail = null;
+            }
+            removedNode.setNext(null);
+            size--;
+            return true;
+        }
         Node<T> node = head;
-        while (node != null) {
+        while (node.next() != null) {
             if (node.next() != null && node.next().data().equals(elem)) {
                 Node<T> removedNode = node.next();
-                node.setNext(removedNode.next()); //It can also be node.next().next()
-                removedNode.setNext(null);        //Added var for clarity
+                node.setNext(removedNode.next());
+                if(removedNode == tail){
+                    tail = node;
+                }
+                removedNode.setNext(null); //Added var for clarity
                 size--;
                 return true;
             }
@@ -217,6 +230,7 @@ public class LinkedSeq<T> implements Seq<T> {
             return false;
         }
         LinkedSeq otherSeq = (LinkedSeq) other;
+        
         Node<T> currNodeThis = head;
         Node currNodeOther = otherSeq.head;
 
