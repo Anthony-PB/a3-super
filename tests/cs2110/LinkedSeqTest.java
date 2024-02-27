@@ -51,8 +51,8 @@ class LinkedSeqTest {
     }
 
     /**
-     * Creates a list containing the same elements (in the same order) as array `elements`.  Only
-     * uses prepend.
+     * Creates a list containing the same elements (in the same order) as array `elements`.
+     * Only uses prepend.
      */
     static <T> Seq<T> makeList(T[] elements) {
         Seq<T> ans = new LinkedSeq<>();
@@ -146,6 +146,141 @@ class LinkedSeqTest {
         list = makeList(stringArray);
         assertTrue(list.contains("Apple"));
     }
+
+    @DisplayName("GIVEN a LinkedSeq, return the correct element at the given position in the list, all enclosed in square brackets.")
+    @Test
+    void testGet() {
+        //TODO Come back to this for test case variability, ask Anthony//
+
+        //WHEN list only has one element//
+        Seq<String> list;
+        list = makeList1();
+        assertEquals("A", list.get(0));
+
+        //WHEN index is negative//
+        list = makeList3();
+        assertEquals("A", list.get(-1));
+
+        //WHEN index is out of bounds//
+        list = makeList0();
+        try {
+            list.get(1);
+        } catch (IndexOutOfBoundsException e) {
+            assertEquals("Index 1 is out of bounds.", e.getMessage());
+        }
+    }
+
+
+    @DisplayName("GIVEN a LinkedSeq, append an element to the end of that list.")
+    @Test
+    void testAppend() {
+        //TODO Ask Anthony why size is not updating correctly//
+
+        //append to empty list//
+        Seq<String> list;
+        list = makeList0();
+        list.append("A");
+        System.out.println(list);
+        assertEquals(1, list.size());
+
+
+        //append to nonempty list//
+        list = makeList3();
+        list.append("A");
+        assertEquals(4, list.size());
+
+        //append multiple elements to nonempty list//
+        list = makeList2();
+        list.append("A");
+        list.append("B");
+        assertEquals(5, list.size());
+
+    }
+
+    @DisplayName("GIVEN a LinkedSeq, insert before an element at that correct index.")
+    @Test
+    void testInsertBefore() {
+
+        Seq<String> list;
+        //insert in the middle somewhere of nonempty list//
+        list = makeList3();
+        list.insertBefore("Anthony", "B");
+        assertEquals("B", list.get(1));
+
+        //insert at end of nonempty list//
+        list = makeList2();
+        list.insertBefore("Nathan", "A");
+        assertEquals("Nathan", list.get(2));
+
+        //insert at beginning of list//
+        list = makeList1();
+        list.insertBefore("Michael Jordan", "A");
+        assertEquals("Michael Jordan", list.get(0));
+
+    }
+
+    @DisplayName("GIVEN a LinkedSeq, remove an element passed into method.")
+    @Test
+    void testRemove() {
+
+        Seq<String> list;
+        //removing a non-existing element in list//
+        list = makeList3();
+        boolean result = list.remove("Anthony");
+        assertFalse(result);
+
+        //remove an element that exists in the list//
+        list = makeList2();
+        list.append("Kyrie Irving");
+        assertTrue(list.contains("Kyrie Irving"));
+        assertTrue(list.remove("Kyrie Irving"));
+        assertFalse(list.remove("Kyrie Irving"));
+        assertEquals("Nathan", list.get(2));
+
+        //remove first instance of multiple duplicate elements in list//
+        list = makeList1();
+        list.insertBefore("Darius Garland", "A");
+        list.append("Darius Garland");
+        assertEquals("Darius Garland", list.get(0));
+        assertEquals("Darius Garland", list.get(2));
+        list.remove("Darius Garland");
+        assertNotEquals("Darius Garland", list.get(0));
+
+    }
+
+    @DisplayName("GIVEN a LinkedSeq, compare and see if two lists are equal .")
+    @Test
+    void testEquals() {
+
+        Seq<String> list;
+        //given two identical lists, see if equal
+        LinkedSeq<String> list1 = new LinkedSeq<>();
+        list1.append("A");
+        list1.append("B");
+        list1.append("C");
+
+        LinkedSeq<String> list2 = new LinkedSeq<>();
+        list2.append("A");
+        list2.append("B");
+        list2.append("C");
+        assertTrue(list1.equals(list2));
+
+
+        //given two non-identical lists, see if equal//
+        LinkedSeq<String> list3 = new LinkedSeq<>();
+        list3.append("X");
+        list3.append("Y");
+
+        LinkedSeq<String> list4 = new LinkedSeq<>();
+        list4.append("A");
+        list4.append("B");
+        assertFalse(list3.equals(list4));
+
+    }
+
+
+
+
 
 
     /*
