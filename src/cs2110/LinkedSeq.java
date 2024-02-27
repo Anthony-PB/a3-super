@@ -108,6 +108,7 @@ public class LinkedSeq<T> implements Seq<T> {
 
     @Override
     public boolean contains(T elem) {
+        assertInv();
         Node<T> node = head;
         while (node != null){
             if(node.data().equals(elem)){
@@ -123,15 +124,35 @@ public class LinkedSeq<T> implements Seq<T> {
     public T get(int index) {
         // TODO 3: Write unit tests for this method, then implement it according to its
         // specification.  Tests must get elements from at least three different indices.
-        throw new UnsupportedOperationException();
+        assertInv();
+        assert(0 <= index && index < size());
+        int indexCount = 0;
+        Node<T> node = head;
+        while (node != null){
+            if(indexCount == index){
+                return node.data();
+            }
+            node = node.next();
+            indexCount++;
+        }
+        throw new IndexOutOfBoundsException("Index " + index + " is out of bounds.");
     }
 
     @Override
     public void append(T elem) {
+        assertInv();
         // TODO 4: Write unit tests for this method, then implement it according to its
         // specification.  Tests must append to lists of at least three different sizes.
         // Implementation constraint: efficiency must not depend on the size of the list.
-        throw new UnsupportedOperationException();
+        Node<T> newNode = new Node<>(elem, null);
+
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.setNext(newNode);
+            tail = newNode;
+        }
     }
 
     @Override
@@ -141,7 +162,15 @@ public class LinkedSeq<T> implements Seq<T> {
         // TODO 5: Write unit tests for this method, then implement it according to its
         // specification.  Tests must insert into lists where `successor` is in at least three
         // different positions.
-        throw new UnsupportedOperationException();
+        assertInv();
+        Node<T> node = head;
+        while (node != null){
+            if(node.next().data().equals(successor)){
+                Node<T> newNode = new Node<>(elem, node.next());
+                node.setNext(newNode);
+            }
+            node = node.next();
+        }
     }
 
     @Override
@@ -149,7 +178,18 @@ public class LinkedSeq<T> implements Seq<T> {
         // TODO 6: Write unit tests for this method, then implement it according to its
         // specification.  Tests must remove `elem` from a list that does not contain `elem`, from a
         // list that contains it once, and from a list that contains it more than once.
-        throw new UnsupportedOperationException();
+        assertInv();
+        Node<T> node = head;
+        while (node != null) {
+            if (node.next() != null && node.next().data().equals(elem)) {
+                Node<T> removedNode = node.next();
+                node.setNext(removedNode.next()); //It can also be node.next().next()
+                removedNode.setNext(null);        //Added var for clarity
+                return true;
+            }
+            node = node.next();
+        }
+        return false;
     }
 
     /**
