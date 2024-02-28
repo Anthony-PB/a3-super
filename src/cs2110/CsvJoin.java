@@ -18,7 +18,7 @@ public class CsvJoin {
 
         try (Reader in = new FileReader(file)) {
             Scanner lines = new Scanner(in);
-            while (lines.hasNext()){
+            while (lines.hasNextLine()){
                 String line = lines.nextLine();
                 String[] values = line.split(",", -1);
 

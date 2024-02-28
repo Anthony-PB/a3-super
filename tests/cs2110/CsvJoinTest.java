@@ -12,32 +12,32 @@ class CsvJoinTest {
     // TODO: Uncomment these tests after implementing the corresponding methods in `CsvJoin`.
     // You must also have implemented `LinkedSeq.toString()` and `LinkedSeq.equals()`.
 
-//    @DisplayName("GIVEN a CSV filename, the CsvJoin class should create a corresponding list")
-//    @Test
-//    void testCsvToList() throws IOException {
-//        // WHEN the data is rectangular
-//        Seq<Seq<String>> table = CsvJoin.csvToList("input-tests/example/input2.csv");
-//        String expectedString = "[[netid, grade], [def456, junior], [ghi789, first-year], [abc123, senior]]";
-//        assertEquals(expectedString, table.toString());
-//
-//        // WHEN the data is not rectangular
-//        table = CsvJoin.csvToList("tests/testCsvToList/non-rectangular.csv");
-//        expectedString = "[[1], [1, 2], [1, 2, 3], [1, , , 4], [1, , 3], [1, , ], [1]]";
-//        assertEquals(expectedString, table.toString());
-//
-//        // WHEN the file is empty
-//        table = CsvJoin.csvToList("tests/testCsvToList/empty.csv");
-//        expectedString = "[]";
-//        assertEquals(expectedString, table.toString());
-//
-//        // WHEN the file contains blank lines
-//        table = CsvJoin.csvToList("tests/testCsvToList/empty-col.csv");
-//        expectedString = "[[], [], []]";
-//        assertEquals(expectedString, table.toString());
-//        // Distinguish between empty array and empty string
-//        assertEquals(1, table.get(0).size());
-//    }
-//
+    @DisplayName("GIVEN a CSV filename, the CsvJoin class should create a corresponding list")
+    @Test
+    void testCsvToList() throws IOException {
+        // WHEN the data is rectangular
+        Seq<Seq<String>> table = CsvJoin.csvToList("input-tests/example/input2.csv");
+        String expectedString = "[[netid, grade], [def456, junior], [ghi789, first-year], [abc123, senior]]";
+        assertEquals(expectedString, table.toString());
+
+        // WHEN the data is not rectangular
+        table = CsvJoin.csvToList("tests/testCsvToList/non-rectangular.csv");
+        expectedString = "[[1], [1, 2], [1, 2, 3], [1, , , 4], [1, , 3], [1, , ], [1]]";
+        assertEquals(expectedString, table.toString());
+
+        // WHEN the file is empty
+        table = CsvJoin.csvToList("tests/testCsvToList/empty.csv");
+        expectedString = "[]";
+        assertEquals(expectedString, table.toString());
+
+        // WHEN the file contains blank lines
+        table = CsvJoin.csvToList("tests/testCsvToList/empty-col.csv");
+        expectedString = "[[], [], []]";
+        assertEquals(expectedString, table.toString());
+        // Distinguish between empty array and empty string
+        assertEquals(1, table.get(0).size());
+    }
+
 //    /**
 //     * Assert that joining "input-tests/dir/input1.csv" and "input-tests/dir/input2.csv" yields the
 //     * table in "input-tests/dir/output.csv".  Requires that tables in "input1.csv" and "input2.csv"

@@ -234,11 +234,18 @@ public class LinkedSeq<T> implements Seq<T> {
         Node<T> currNodeThis = head;
         Node currNodeOther = otherSeq.head;
 
-        while(currNodeThis != null && currNodeThis.data().equals(currNodeOther.data())){
+        while(currNodeThis != null && currNodeOther != null) {
+            if (currNodeThis.data() == null) {
+                if (currNodeOther.data() != null) {
+                    return false;
+                }
+            } else if (!currNodeThis.data().equals(currNodeOther.data())) {
+                return false;
+            }
             currNodeOther = currNodeOther.next();
             currNodeThis = currNodeThis.next();
         }
-        return currNodeThis == null;
+        return currNodeThis == null && currNodeOther == null;
         // TODO 7: Write unit tests for this method, then finish implementing it according to its
         // specification.  Tests must compare at least three different pairs of lists; one of the
         // pairs must include a list that is a prefix of the other.
