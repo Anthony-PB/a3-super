@@ -6,6 +6,7 @@ import java.io.Reader;
 import java.util.Scanner;
 
 public class CsvJoin {
+
     /**
      * Load a table from a Simplified CSV file and return a row-major list-of-lists representation.
      * The CSV file is assumed to be in the platform's default encoding. Throws an IOException if
@@ -16,18 +17,17 @@ public class CsvJoin {
 
         try (Reader in = new FileReader(file)) {
             Scanner lines = new Scanner(in);
-            while (lines.hasNextLine()){
+            while (lines.hasNextLine()) {
                 String line = lines.nextLine();
                 String[] values = line.split(",", -1);
 
                 Seq<String> row = new LinkedSeq<>();
-                for(String value: values){
+                for (String value : values) {
                     row.append(value);
                 }
                 table.append(row);
             }
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             throw new IOException();
         }
         return table;
@@ -39,8 +39,8 @@ public class CsvJoin {
      * when there is no match. Requires that `left` and `right` represent rectangular tables with at
      * least 1 column.
      */
-    public static Seq<Seq<String>> join(Seq<Seq<String>> left, Seq<Seq<String>> right){
-        assert(left.size() >= 1 && right.size() >= 1);
+    public static Seq<Seq<String>> join(Seq<Seq<String>> left, Seq<Seq<String>> right) {
+        assert (left.size() >= 1 && right.size() >= 1);
         Seq<Seq<String>> joined = new LinkedSeq<>();
         for (Seq<String> leftRow : left) {
             boolean foundMatch = false;
@@ -48,11 +48,11 @@ public class CsvJoin {
                 if (leftRow.get(0).equals(rightRow.get(0))) {
                     // Found a match, add the combined row to the result after combining
                     Seq<String> combinedRow = new LinkedSeq<>();
-                    for (String s: leftRow){
+                    for (String s : leftRow) {
                         combinedRow.append(s);
                     }
                     // Starting at i = 1 to skip the first column
-                    for ( int i = 1; i < rightRow.size(); i++){
+                    for (int i = 1; i < rightRow.size(); i++) {
                         combinedRow.append(rightRow.get(i));
                     }
                     joined.append(combinedRow);
@@ -64,7 +64,7 @@ public class CsvJoin {
             if (!foundMatch) {
                 // No match found, add a row with empty strings from `right`
                 Seq<String> emptyRow = new LinkedSeq<>(); // emptyRow only has leftRow contents
-                for (String s: leftRow){
+                for (String s : leftRow) {
                     emptyRow.append(s);
                 }
                 for (int i = 1; i < right.get(0).size(); i++) {
@@ -76,5 +76,30 @@ public class CsvJoin {
 
         return joined;
 
+    }
+    private static boolean isRectangularList(Seq<Seq<String>> table) {
+        table.size();
+        return true;
+    }
+
+    public static void main(String[] args) throws IOException {
+        if (args.length != 2) {
+            System.err.println("Usage: cs2110.CsvJoin <left_table.csv> <right_table.csv>");
+            System.exit(1);
+        }
+        String fileL = args[0];
+        String fileR = args[1];
+        try {
+            Seq<Seq<String>> leftList = csvToList(fileL);
+            Seq<Seq<String>> rightList = csvToList(fileR);
+            System.out.print(join(leftList, rightList));
+        } catch (IOException e) {
+            System.err.println("Error: Could not read an input file.");
+            System.exit(1);
+        }
+        //try catching something for the rectangular list?
+        //Maybe create a helper if you really want to.
+        //Idea: Compare num of column in header row vs every other row.
+        //isRectangularList
     }
 }
