@@ -3,7 +3,6 @@ package cs2110;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class CsvJoin {
@@ -47,12 +46,12 @@ public class CsvJoin {
             boolean foundMatch = false;
             for (Seq<String> rightRow : right) {
                 if (leftRow.get(0).equals(rightRow.get(0))) {
-                    // Found a match, add the combined row to the result
+                    // Found a match, add the combined row to the result after combining
                     Seq<String> combinedRow = new LinkedSeq<>();
                     for (String s: leftRow){
                         combinedRow.append(s);
                     }
-                    // Starting at i = 1 to skip the first column.
+                    // Starting at i = 1 to skip the first column
                     for ( int i = 1; i < rightRow.size(); i++){
                         combinedRow.append(rightRow.get(i));
                     }
@@ -64,7 +63,7 @@ public class CsvJoin {
             // Could also do else I suppose.
             if (!foundMatch) {
                 // No match found, add a row with empty strings from `right`
-                Seq<String> emptyRow = new LinkedSeq<>(); // emptyRow only has leftRow contents.
+                Seq<String> emptyRow = new LinkedSeq<>(); // emptyRow only has leftRow contents
                 for (String s: leftRow){
                     emptyRow.append(s);
                 }
