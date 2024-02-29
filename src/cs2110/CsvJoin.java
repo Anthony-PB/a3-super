@@ -3,9 +3,8 @@ package cs2110;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
-import java.util.Set;
 
 public class CsvJoin {
     /**
@@ -29,6 +28,54 @@ public class CsvJoin {
                 table.append(row);
             }
         }
+        catch (IOException e){
+            throw new IOException();
+        }
         return table;
+    }
+
+    /**
+     * Return the left outer join of tables `left` and `right`, joined on their first column. Result
+     * will represent a rectangular table, with empty strings filling in any columns from `right`
+     * when there is no match. Requires that `left` and `right` represent rectangular tables with at
+     * least 1 column.
+     */
+    public static Seq<Seq<String>> join(Seq<Seq<String>> left, Seq<Seq<String>> right){
+        assert(left.size() >= 1 && right.size() >= 1);
+        Seq<Seq<String>> joined = new LinkedSeq<>();
+        for (Seq<String> leftRow : left) {
+            boolean foundMatch = false;
+            for (Seq<String> rightRow : right) {
+                if (leftRow.get(0).equals(rightRow.get(0))) {
+                    // Found a match, add the combined row to the result
+                    Seq<String> combinedRow = new LinkedSeq<>();
+                    for (String s: leftRow){
+                        combinedRow.append(s);
+                    }
+                    // Starting at i = 1 to skip the first column.
+                    for ( int i = 1; i < rightRow.size(); i++){
+                        combinedRow.append(rightRow.get(i));
+                    }
+                    joined.append(combinedRow);
+                    foundMatch = true;
+                    break;
+                }
+            }
+            // Could also do else I suppose.
+            if (!foundMatch) {
+                // No match found, add a row with empty strings from `right`
+                Seq<String> emptyRow = new LinkedSeq<>(); // emptyRow only has leftRow contents.
+                for (String s: leftRow){
+                    emptyRow.append(s);
+                }
+                for (int i = 1; i < right.get(0).size(); i++) {
+                    emptyRow.append("");
+                }
+                joined.append(emptyRow);
+            }
+        }
+
+        return joined;
+
     }
 }

@@ -38,30 +38,30 @@ class CsvJoinTest {
         assertEquals(1, table.get(0).size());
     }
 
-//    /**
-//     * Assert that joining "input-tests/dir/input1.csv" and "input-tests/dir/input2.csv" yields the
-//     * table in "input-tests/dir/output.csv".  Requires that tables in "input1.csv" and "input2.csv"
-//     * be rectangular with at least one column.
-//     */
-//    static void testJoinHelper(String dir) throws IOException {
-//        Seq<Seq<String>> left = CsvJoin.csvToList("input-tests/" + dir + "/input1.csv");
-//        Seq<Seq<String>> right = CsvJoin.csvToList("input-tests/" + dir + "/input2.csv");
-//        Seq<Seq<String>> expected = CsvJoin.csvToList("input-tests/" + dir + "/output.csv");
-//        Seq<Seq<String>> join = CsvJoin.join(left, right);
-//        assertEquals(expected, join);
-//    }
-//
-//    @DisplayName("GIVEN two lists representing rectangular tables, the CsvJoin class should " +
-//            "compute their left outer join on the first column of the first table.")
-//    @Test
-//    void testJoin() throws IOException {
-//        // WHEN the left keys are unique and there is at most one match per key
-//        testJoinHelper("example");
-//
-//        // WHEN there are duplicate left keys and there is at most one match per key
-//        testJoinHelper("states");
-//
-//        // TODO (after implementing `main()`): Run at least two of your own input-tests here
-//    }
+    /**
+     * Assert that joining "input-tests/dir/input1.csv" and "input-tests/dir/input2.csv" yields the
+     * table in "input-tests/dir/output.csv".  Requires that tables in "input1.csv" and "input2.csv"
+     * be rectangular with at least one column.
+     */
+    static void testJoinHelper(String dir) throws IOException {
+        Seq<Seq<String>> left = CsvJoin.csvToList("input-tests/" + dir + "/input1.csv");
+        Seq<Seq<String>> right = CsvJoin.csvToList("input-tests/" + dir + "/input2.csv");
+        Seq<Seq<String>> expected = CsvJoin.csvToList("input-tests/" + dir + "/output.csv");
+        Seq<Seq<String>> join = CsvJoin.join(left, right);
+        assertEquals(expected, join);
+    }
+
+    @DisplayName("GIVEN two lists representing rectangular tables, the CsvJoin class should " +
+            "compute their left outer join on the first column of the first table.")
+    @Test
+    void testJoin() throws IOException {
+        // WHEN the left keys are unique and there is at most one match per key
+        testJoinHelper("example");
+
+        // WHEN there are duplicate left keys and there is at most one match per key
+        testJoinHelper("states");
+
+        // TODO (after implementing `main()`): Run at least two of your own input-tests here
+    }
 
 }
