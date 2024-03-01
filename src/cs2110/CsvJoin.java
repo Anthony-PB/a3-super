@@ -41,6 +41,19 @@ public class CsvJoin {
      */
     public static Seq<Seq<String>> join(Seq<Seq<String>> left, Seq<Seq<String>> right) {
         assert (left.size() >= 1 && right.size() >= 1);
+        int topL = left.get(0).size();
+        int topR = right.get(0).size();
+        for(Seq<String> rows: right){
+            if(rows.size()!=topR){
+                throw new IllegalArgumentException("Error: Right table is not rectangular.");
+            }
+        }
+        for(Seq<String> rows: left){
+            if(rows.size()!=topL){
+                throw new IllegalArgumentException("Error: Left table is not rectangular.");
+            }
+        }
+
         Seq<Seq<String>> joined = new LinkedSeq<>();
         for (Seq<String> leftRow : left) {
             boolean foundMatch = false;
@@ -77,9 +90,9 @@ public class CsvJoin {
         return joined;
 
     }
-    private static boolean isRectangularList(Seq<Seq<String>> table) {
-        table.size();
-        return true;
+
+    private String tableToString(Seq<Seq<String>> table){
+        return "false";
     }
 
     public static void main(String[] args) throws IOException {
@@ -92,14 +105,14 @@ public class CsvJoin {
         try {
             Seq<Seq<String>> leftList = csvToList(fileL);
             Seq<Seq<String>> rightList = csvToList(fileR);
-            System.out.print(join(leftList, rightList));
+            Seq<Seq<String>> joinedList = join(leftList, rightList);
+            System.out.println(joinedList);
         } catch (IOException e) {
             System.err.println("Error: Could not read an input file.");
             System.exit(1);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: Ensure both csv files are in a rectangular format.");
+            System.exit(1);
         }
-        //try catching something for the rectangular list?
-        //Maybe create a helper if you really want to.
-        //Idea: Compare num of column in header row vs every other row.
-        //isRectangularList
     }
 }
