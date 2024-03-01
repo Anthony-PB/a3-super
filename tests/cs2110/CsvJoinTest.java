@@ -9,9 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class CsvJoinTest {
 
-    // TODO: Uncomment these tests after implementing the corresponding methods in `CsvJoin`.
-    // You must also have implemented `LinkedSeq.toString()` and `LinkedSeq.equals()`.
-
     @DisplayName("GIVEN a CSV filename, the CsvJoin class should create a corresponding list")
     @Test
     void testCsvToList() throws IOException {
@@ -61,7 +58,28 @@ class CsvJoinTest {
         // WHEN there are duplicate left keys and there is at most one match per key
         testJoinHelper("states");
 
-        // TODO (after implementing `main()`): Run at least two of your own input-tests here
-    }
+        //input1.csv and input2.csv match output1.csv
+        String[] args1 = {"tests/testCsvToList/input1.csv", "tests/testCsvToList/input2.csv"};
+        String expectedOutput =
+                "1,2,3,2,3\n"
+                + "1,2,3,2,3\n"
+                + "1,2,3,2,3\n"
+                + "1,2,3,2,3\n"
+                + "1,,,2,3\n"
+                + "1,,,2,3";
+        CsvJoin.main(args1);
 
+        String[] args2 = {"tests/testCsvToList/input3.csv", "tests/testCsvToList/input4.csv"};
+        CsvJoin.main(args2);
+
+        //input3.csv and input4.csv match output2.csv
+        expectedOutput =
+                "id,name,age,city\n"
+                + "1,Alice,20,New York\n"
+                + "2,Bob,25,Los Angeles\n"
+                + "2,Bob,25,San Francisco\n"
+                + "2,Robert,26,Los Angeles\n"
+                + "2,Robert,26,San Francisco\n"
+                + "3,Charlie,30,";
+    }
 }

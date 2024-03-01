@@ -95,6 +95,14 @@ public class CsvJoin {
         return "false";
     }
 
+    private static String toCsvTable(Seq<Seq<String>> table) {
+        String result = "";
+        for (Seq<String> row : table) {
+            result += String.join(",", row) + "\n";
+        }
+        return result;
+    }
+
     public static void main(String[] args) throws IOException {
         if (args.length != 2) {
             System.err.println("Usage: cs2110.CsvJoin <left_table.csv> <right_table.csv>");
@@ -106,7 +114,7 @@ public class CsvJoin {
             Seq<Seq<String>> leftList = csvToList(fileL);
             Seq<Seq<String>> rightList = csvToList(fileR);
             Seq<Seq<String>> joinedList = join(leftList, rightList);
-            System.out.println(joinedList);
+            System.out.println(toCsvTable(joinedList));
         } catch (IOException e) {
             System.err.println("Error: Could not read an input file.");
             System.exit(1);
