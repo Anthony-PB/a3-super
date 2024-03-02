@@ -2,10 +2,10 @@
 
 ## Submitter metadata
 
-Partner 1: Firstname Lastname (NetID)  - TODO
-Partner 2: Firstname Lastname (NetID)  - delete if working solo
+Partner 1: Firstname Lastname (NetID)  - ap2357
+Partner 2: Firstname Lastname (NetID)  - nsv23
 
-Hours spent working on this assignment: 0.0  - TODO
+Hours spent working on this assignment: 13.0
 
 ## Verification questions
 
@@ -14,7 +14,7 @@ Hours spent working on this assignment: 0.0  - TODO
    (on the right).  What **red text** does your program print to IntelliJ's console?
    (as a reminder, it had better not include a stack trace)
 
-   Answer: TODO
+   Answer: Error: Ensure both csv files are in a rectangular format.
 
 ## Reflection questions
 
@@ -22,10 +22,22 @@ Hours spent working on this assignment: 0.0  - TODO
    corner case caught you by surprise or was particularly awkward to handle?  Finally, describe a
    testing scenario that you added which covers this corner case.
 
-   Answer: TODO
+   Answer: The insertBefore method inserts a new element before a given element (successor).
+   It correctly handles the case where successor is the first element in the list by calling
+   prepend. I was having trouble with implementing the method with this corner-case in the way.
+   I didn't think it was something I had to create a separate if statement for. It was awkward to
+   handle because I was unsure on how to add the element, but I later was reminded about prepend.
+    list = makeList1();
+    list.insertBefore("Michael Jordan", "A");
+    assertEquals("Michael Jordan", list.get(0));
+    This is the test case we made for the corner case. "A" is at the start of the list.
+    "Micheal Jordan" is prepended to the start because of this.
 
 2. How did you plan and budget your time so that you could complete and debug your application by
    the deadline?  If you worked as partners, how did you coordinate to ensure in advance that you
    would have sufficient time to work on the project together?
 
-   Answer: TODO
+   Answer: We just planned to start early and submit early in order to avoid having big issues
+   near the deadline. The above corner case did take a while, but we had plenty of time to figure
+   it out. It was more of a conceptual issue. We met up when we could and tried to tackle the
+   large issues together. We dealt with small things on our own and the big hitters together.

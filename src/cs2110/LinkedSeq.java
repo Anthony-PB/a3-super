@@ -122,7 +122,7 @@ public class LinkedSeq<T> implements Seq<T> {
 
     @Override
     public T get(int index) {
-        // TODO 3: Write unit tests for this method, then implement it according to its
+        // Write unit tests for this method, then implement it according to its
         // specification.  Tests must get elements from at least three different indices.
         assertInv();
         assert(0 <= index && index < size());
@@ -141,7 +141,7 @@ public class LinkedSeq<T> implements Seq<T> {
     @Override
     public void append(T elem) {
         assertInv();
-        // TODO 4: Write unit tests for this method, then implement it according to its
+        // Write unit tests for this method, then implement it according to its
         // specification.  Tests must append to lists of at least three different sizes.
         // Implementation constraint: efficiency must not depend on the size of the list.
         Node<T> newNode = new Node<>(elem, null);
@@ -160,7 +160,7 @@ public class LinkedSeq<T> implements Seq<T> {
     public void insertBefore(T elem, T successor) {
         // Tip: Since there is a precondition that `successor` is in the list, you don't have to
         // handle the case of the empty list.  Asserting this precondition is optional.
-        // TODO 5: Write unit tests for this method, then implement it according to its
+        // Write unit tests for this method, then implement it according to its
         // specification.  Tests must insert into lists where `successor` is in at least three
         // different positions.
         assertInv();
@@ -182,7 +182,7 @@ public class LinkedSeq<T> implements Seq<T> {
 
     @Override
     public boolean remove(T elem) {
-        // TODO 6: Write unit tests for this method, then implement it according to its
+        // Write unit tests for this method, then implement it according to its
         // specification.  Tests must remove `elem` from a list that does not contain `elem`, from a
         // list that contains it once, and from a list that contains it more than once.
         assertInv();
@@ -246,7 +246,7 @@ public class LinkedSeq<T> implements Seq<T> {
             currNodeThis = currNodeThis.next();
         }
         return currNodeThis == null && currNodeOther == null;
-        // TODO 7: Write unit tests for this method, then finish implementing it according to its
+        // Write unit tests for this method, then finish implementing it according to its
         // specification.  Tests must compare at least three different pairs of lists; one of the
         // pairs must include a list that is a prefix of the other.
     }

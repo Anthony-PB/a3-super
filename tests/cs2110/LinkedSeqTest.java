@@ -200,12 +200,13 @@ class LinkedSeqTest {
         list.insertBefore("Anthony", "B");
         assertEquals("Anthony", list.get(1));
 
-        //insert at end of nonempty list//
-        list = makeList2();
-        list.insertBefore("Nathan", "A");
-        assertEquals("Nathan", list.get(0));
+        //insert at near end of nonempty list//
+        String[] stringArray = {"Apple", "Banana", "Cherry", "Apple","Orange"};
+        list = makeList(stringArray);
+        list.insertBefore("Nathan", "Orange");
+        assertEquals("Nathan", list.get(4));
 
-        //insert at beginning of list//
+        //insert at beginning of nonempty list//
         list = makeList1();
         list.insertBefore("Michael Jordan", "A");
         assertEquals("Michael Jordan", list.get(0));
