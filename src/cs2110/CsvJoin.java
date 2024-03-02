@@ -70,7 +70,6 @@ public class CsvJoin {
                     }
                     joined.append(combinedRow);
                     foundMatch = true;
-                    break;
                 }
             }
             // Could also do else I suppose.
