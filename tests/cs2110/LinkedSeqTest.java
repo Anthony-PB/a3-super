@@ -3,7 +3,6 @@ package cs2110;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -117,7 +116,7 @@ class LinkedSeqTest {
         assertEquals("[1, 2, 3, 4]", intList.toString());
     }
 
-    // TODO: Add new test cases here as you implement each method in `LinkedSeq`.  To save typing,
+    // To save typing,
     // you may combine multiple tests for the _same_ method in the same @Test procedure, but be sure
     // that each test case is visibly distinct (comments are good for this, as demonstrated above).
     // You are welcome to compare against an expected `toString()` output in order to check multiple
@@ -150,7 +149,6 @@ class LinkedSeqTest {
     @DisplayName("GIVEN a LinkedSeq, return the correct element at the given position in the list, all enclosed in square brackets.")
     @Test
     void testGet() {
-        //TODO Come back to this for test case variability, ask Anthony//
 
         //WHEN list only has one element//
         Seq<String> list;
@@ -170,7 +168,6 @@ class LinkedSeqTest {
     @DisplayName("GIVEN a LinkedSeq, append an element to the end of that list.")
     @Test
     void testAppend() {
-        //TODO Ask Anthony why size is not updating correctly//
 
         //append to empty list//
         Seq<String> list;

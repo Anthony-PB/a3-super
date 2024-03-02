@@ -91,10 +91,14 @@ public class CsvJoin {
 
     }
 
-    private String tableToString(Seq<Seq<String>> table){
-        return "false";
-    }
-
+    /**
+     * Convert a 2D linked list representing a CSV file to a CSV string.
+     *
+     * @param table A 2D linked list of strings. Each inner list represents a row in the CSV file,
+     *              and each string in the inner list represents a cell in the CSV file.
+     * @return A string representing the CSV file. Each row is represented as a line in the string,
+     *         and each cell is separated by a comma. Rows are separated by newline characters (\n).
+     */
     private static String toCsvTable(Seq<Seq<String>> table) {
         String result = "";
         for (Seq<String> row : table) {
@@ -102,8 +106,17 @@ public class CsvJoin {
         }
         return result;
     }
+/**
+ * The entry point of the CsvJoin application.
+ *
+ * @param args An array of command-line arguments. The first element should be the path to the
+ * first CSV file, and the second element should be the path to the second CSV file.
+ * The CSV files should represent rectangular tables with at least one column.
+ * After making the CSV files into lists, it joins the two lists using the join method and
+ * converts the result back to a CSV string using the toCsvTable method.
+ */
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         if (args.length != 2) {
             System.err.println("Usage: cs2110.CsvJoin <left_table.csv> <right_table.csv>");
             System.exit(1);

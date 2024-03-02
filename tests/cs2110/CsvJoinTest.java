@@ -3,7 +3,6 @@ package cs2110;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
-import java.util.Iterator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -59,7 +58,7 @@ class CsvJoinTest {
         testJoinHelper("states");
 
         //input1.csv and input2.csv match output1.csv
-        String[] args1 = {"tests/testCsvToList/input1.csv", "tests/testCsvToList/input2.csv"};
+        String[] args1 = {"input-tests/bigTest/input1.csv", "input-tests/bigTest/input2.csv"};
         String expectedOutput =
                 "1,2,3,2,3\n"
                 + "1,2,3,2,3\n"
@@ -69,7 +68,7 @@ class CsvJoinTest {
                 + "1,,,2,3";
         CsvJoin.main(args1);
 
-        String[] args2 = {"tests/testCsvToList/input3.csv", "tests/testCsvToList/input4.csv"};
+        String[] args2 = {"input-tests/biggestTest/input3.csv", "input-tests/biggestTest/input4.csv"};
         CsvJoin.main(args2);
 
         //input3.csv and input4.csv match output2.csv
