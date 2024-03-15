@@ -217,10 +217,17 @@ class LinkedSeqTest {
     @Test
     void testRemove() {
 
+
+
         Seq<String> list;
+
+        list = makeList1();
+        boolean result = list.remove("A");
+        assertTrue(result);
+
         //removing a non-existing element in list//
         list = makeList3();
-        boolean result = list.remove("Anthony");
+        result = list.remove("Anthony");
         assertFalse(result);
 
         //remove an element that exists in the list//
@@ -238,7 +245,6 @@ class LinkedSeqTest {
         assertEquals("Darius Garland", list.get(2));
         list.remove("Darius Garland");
         assertNotEquals("Darius Garland", list.get(0));
-
     }
 
     @DisplayName("GIVEN a LinkedSeq, compare and see if two lists are equal .")
